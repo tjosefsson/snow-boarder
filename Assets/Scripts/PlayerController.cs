@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,6 +10,7 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float baseSpeed = 20f;
     Rigidbody2D rb2d;
     SurfaceEffector2D surfaceEffector2D;
+    Boolean canMove = true;
     
 
     // Start is called before the first frame update
@@ -21,9 +23,16 @@ public class PlayerController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        RotatePlayer();
-        BostPlayer();
+       if(canMove) {
+            RotatePlayer();
+            BostPlayer();
+       }
     }
+
+    public void DisableControls() {
+        canMove = false;
+    }
+
 
     void BostPlayer() {
         if(Input.GetKey(KeyCode.Space)) {
